@@ -31,9 +31,7 @@ public class DistributoreBenzina {
         if (quantita >= 0.0) {
             this.deposito = quantita;
         }
-        else {
-            this.deposito = 0.0;
-        }
+       
     }
 
 
@@ -47,9 +45,7 @@ public class DistributoreBenzina {
         if (prezzo > 0.0) {
             this.euroPerLitro = prezzo;
         }
-        else {
-            this.euroPerLitro = 0.0;
-        }
+       
     }
 
     public void rifornisci(double quantita) {
@@ -69,8 +65,10 @@ public class DistributoreBenzina {
                     this.deposito -= quantita;
                     automobile.addGas(quantita);
                 }
+                
             }
         }
+        
     }
 
 
