@@ -49,21 +49,22 @@ public class Car{
     }
 
     public void drive(double km){
-        if(km  > 0.0){
-            double consumato = km * this.resa;
-            if(consumato <= this.carburante){
-                this.carburante -= consumato;
-            }
+        if(km > 0.0 && this.resa > 0.0){
+            double consumo = km * this.resa;
 
+            if(consumo <= this.carburante){
+                this.carburante -= consumo;
+            }
             else{
-                System.out.println("Carburante insufficente");
+                this.carburante = 0.0;
             }
-
         }
-        else{
-            System.out.println("I km devono essere maggiori di 0");
-        }
+    }
     
+    public void addGas (double quantita){
+        if(quantita > 0.0){
+            this.carburante += quantita;
+        }
     }
 
     public String toString(){
