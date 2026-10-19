@@ -1,0 +1,54 @@
+
+public class Test {
+    public static void main(String[] args) {
+
+        Parcheggio parcheggio = new Parcheggio(2.50, 2);
+
+        Car auto1 = new Car(15);
+        Car auto2 = new Car(20);
+        Car auto3 = new Car(18);
+
+        System.out.println(parcheggio.toString());
+
+        if (parcheggio.entra(auto1)) {
+            System.out.println("Auto 1 entrata");
+        }
+        else {
+            System.out.println("Auto 1 non entrata");
+        }
+
+        if (parcheggio.entra(auto2)) {
+            System.out.println("Auto 2 entrata");
+        }
+        else {
+            System.out.println("Auto 2 non entrata");
+        }
+
+        if (parcheggio.entra(auto3)) {
+            System.out.println("Auto 3 entrata");
+        }
+        else {
+            System.out.println("Parcheggio pieno");
+        }
+
+        System.out.println();
+        System.out.println(parcheggio.toString());
+
+        double costo = parcheggio.esce(auto1, 3);
+
+        System.out.println("Costo sosta: " + costo);
+
+        System.out.println();
+        System.out.println(parcheggio.toString());
+
+        parcheggio.setCosto(3.00);
+
+        System.out.println("Nuovo costo orario: " + parcheggio.getCostoOrario());
+
+        Parcheggio copia = new Parcheggio(parcheggio);
+
+        System.out.println();
+        System.out.println("Parcheggio copiato:");
+        System.out.println(copia.toString());
+    }
+}

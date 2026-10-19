@@ -1,0 +1,113 @@
+
+import java.util.*;
+
+public class Parcheggio {
+
+    private int postiDisponibili;
+    private double costoOrario;
+    private ArrayList<Car> elencoAuto;
+
+    public Parcheggio() {
+        this.postiDisponibili = 0;
+        this.costoOrario = 0;
+        this.elencoAuto = new ArrayList<Car>();
+    }
+
+    public Parcheggio(double unCostoOrario, int unNumeroDiPosti) {
+        if (unCostoOrario > 0) {
+            this.costoOrario = unCostoOrario;
+        }
+        else {
+            this.costoOrario = 0;
+        }
+
+        if (unNumeroDiPosti >= 0) {
+            this.postiDisponibili = unNumeroDiPosti;
+        }
+        else {
+            this.postiDisponibili = 0;
+        }
+
+        this.elencoAuto = new ArrayList<Car>();
+    }
+
+    public Parcheggio(Parcheggio altro) {
+        if (altro != null) {
+            this.postiDisponibili = altro.postiDisponibili;
+            this.costoOrario = altro.costoOrario;
+            this.elencoAuto = new ArrayList<Car>(altro.elencoAuto);
+        }
+        else {
+            this.postiDisponibili = 0;
+            this.costoOrario = 0;
+            this.elencoAuto = new ArrayList<Car>();
+        }
+    }
+
+    public int getPostiDisponibili() {
+        return postiDisponibili;
+    }
+
+    public void setPostiDisponibili(int postiDisponibili) {
+        if (postiDisponibili >= 0) {
+            this.postiDisponibili = postiDisponibili;
+        }
+    }
+
+    public double getCostoOrario() {
+        return costoOrario;
+    }
+
+    public void setCosto(double unCostoOrario) {
+        if (unCostoOrario > 0) {
+            this.costoOrario = unCostoOrario;
+        }
+    }
+
+    public boolean entra(Car unaAutomobile) {
+        if (unaAutomobile == null) {
+            return false;
+        }
+
+        if (postiDisponibili > 0 && !elencoAuto.contains(unaAutomobile)) {
+            elencoAuto.add(unaAutomobile);
+            postiDisponibili = postiDisponibili - 1;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public double esce(Car unaAutomobile, double ore) {
+        if (unaAutomobile == null || ore <= 0) {
+            return 0;
+        }
+
+        if (elencoAuto.contains(unaAutomobile)) {
+            double costo = ore * costoOrario;
+
+            elencoAuto.remove(unaAutomobile);
+            postiDisponibili = postiDisponibili + 1;
+
+            return costo;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    
+public String toString() {
+    String out = "I posti attualmente disponibili sono: " + this.postiDisponibili;
+    out += "\nIl costo orario è: " + this.costoOrario;
+    out += "\nAttualmente sono presenti:";
+
+    for (Car c : elencoAuto) {
+        out += "\n" + c.toString();
+    }
+
+    return out;
+}
+
+}
