@@ -1,0 +1,44 @@
+
+public class Pagamento {
+    private String beneficiario;
+    private double importo;
+
+    public Pagamento() {
+        this.beneficiario = "";
+        this.importo = 0;
+    }
+
+    public Pagamento(String beneficiario, double importo) {
+        if (beneficiario == null ) {
+            throw new IllegalArgumentException("Beneficiario non valido");
+        }
+        if (importo <= 0) {
+            throw new IllegalArgumentException("Importo non valido");
+        }
+        this.beneficiario = beneficiario;
+        this.importo = importo;
+    }
+
+    public String getBeneficiario() {
+        return beneficiario;
+    }
+
+    public void setBeneficiario(String beneficiario) {
+        if (beneficiario == null ) {
+            throw new IllegalArgumentException("Beneficiario non valido");
+        }
+        this.beneficiario = beneficiario;
+    }
+
+    public double getImporto() {
+        return importo;
+    }
+
+    public void setImporto(double importo) {
+        if (importo <= 0) {
+            throw new IllegalArgumentException("Importo non valido");
+        }
+        this.importo = importo;
+    }
+}
+

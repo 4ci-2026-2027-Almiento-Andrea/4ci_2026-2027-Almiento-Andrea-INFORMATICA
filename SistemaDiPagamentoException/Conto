@@ -1,0 +1,69 @@
+
+public class Conto {
+    private String intestatario;
+    private double saldo;
+
+    public Conto() {
+        this.intestatario = "";
+        this.saldo = 0;
+    }
+
+    public Conto(String intestatario, double saldo) {
+        if (intestatario == null ) {
+            throw new IllegalArgumentException("Intestatario non valido");
+        }
+        if (saldo < 0) {
+            throw new IllegalArgumentException("Saldo non valido");
+        }
+        this.intestatario = intestatario;
+        this.saldo = saldo;
+    }
+
+    public String getIntestatario() {
+        return intestatario;
+    }
+
+    public void setIntestatario(String intestatario) {
+        if (intestatario == null ) {
+            throw new IllegalArgumentException("Intestatario non valido");
+        }
+        this.intestatario = intestatario;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        if (saldo < 0) {
+            throw new IllegalArgumentException("Saldo non valido");
+        }
+        this.saldo = saldo;
+    }
+
+    public String effettuaPagamento(Pagamento pagamento)
+            throws SaldoInsufficienteException {
+
+        if (pagamento == null) {
+            throw new IllegalArgumentException("Pagamento non valido");
+        }
+
+        if (pagamento.getImporto() <= 0) {
+            throw new IllegalArgumentException("Importo non valido");
+        }
+
+        if (pagamento.getImporto() > saldo) {
+            throw new SaldoInsufficienteException("Saldo insufficiente");
+        }
+
+        saldo = saldo - pagamento.getImporto();
+
+        String out = "";
+        out += "Pagamento effettuato.";
+        out += "\n Beneficiario: " + pagamento.getBeneficiario();
+        out += "\n Importo: " + pagamento.getImporto();
+        out += "\n Saldo residuo: " + saldo;
+
+        return out;
+    }
+}
